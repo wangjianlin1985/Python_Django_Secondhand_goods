@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}账户信息{% endblock %}
+
+{% block content %}
+	<div class="account_content">
+		<a href="#" onClick="javascript :history.back(-1);" class="return">&raquo;&nbsp;返回上页</a>
+		<h1>Welcome, {{username}}</h1>
+		<h2>基本资料</h2>
+		<ul>
+			<form method="post" action="/recharge/">
+			<li>用户名： {{username}}
+			<li>邮箱：{{user.email}}
+			<li><a href="change_password">修改密码</a></li>
+			<li>我的余额：{{user.money}} <input type="submit" class="button" value="充值" style="margin-left:5%;"></li>
+			</form>
+		</ul>
+
+		<h2>交易记录</h2>
+		<ul>
+			<li><a href="cart">我的购物车</a></li>
+			<li><a href="my_orders">我的订单</a></li>
+			<li><a href="my_product">我的物品</a></li>
+			<li><a href="upload">上传物品</a></li>
+			<li><a href="trading_record">收入支出</a></li>
+		</ul>
+	</div>
+{% endblock %}

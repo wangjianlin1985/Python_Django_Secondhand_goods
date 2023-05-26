@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}填写订单信息{% endblock %}
+
+{% block content %}
+<div class="content">
+		<a href="#" onClick="javascript :history.back(-1);" class="return">&raquo;&nbsp;返回上页</a>
+		{% if product.is_exist == True %}
+		<h1 class="cart-title">填写订单</h1>
+		{% else %}
+		<h2>该商品已下架</h2>
+		{% endif %}
+		<br>
+	<div class="input_order">
+		<form action="/../order_info/{{product.id}}/{{order.id}}/" method="post" id="basket" >
+			<div class="buyer">
+				<div class="label">买家：</div>
+				<div class="label_field">{{username}}</div>
+			</div>
+			<div class="product">
+				<div class="label">购买物品：</div>
+				<div class="label_field"><a href="/product/{{product.id}}">{{product.name}}</a></div>
+			</div>
+			<div class="unit_price">
+				<div class="label">单价：</div>
+				<div class="label_field">{{product.price}}</div>
+			</div>
+			<div class="buy_quantity">
+				<div class="label">购买数量：</div>
+				<div class="label_field">{{product.buy_quantity}}</div>
+			</div>
+			<div class="total">
+				<div class="label">总价：</div>
+				<div class="label_field">{{total}}</div>
+			</div>
+			<div class="address">
+				<div class="label">地址：</div>
+				<input type="text" name="address">
+			</div>
+			<div class="phone">
+				<div class="label">联系电话：</div>
+				<input type="text" name="phone">
+			</div>
+			<div class="remarks">
+				<div class="label">备注：</div>
+				<input type="text" name="remarks">
+			</div>
+			<input class="button" type="submit" value="确认购买">
+		</form>
+	</div>
+</div>
+{% endblock %}

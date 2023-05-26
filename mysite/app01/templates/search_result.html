@@ -1,0 +1,40 @@
+	
+{% extends "base.html" %}
+
+{% block title %}{{product_name}}的搜索结果{% endblock %}
+
+{% block content %}
+	<div class="content">
+		<a href="#" onClick="javascript :history.back(-1);" class="return">&raquo;&nbsp;返回上页</a>
+		{% if search_status == "Error" %}
+		很抱歉，暂时没有相关商品
+		{% endif %}
+		{% if search_status == "Success" %}
+		<h2>"{{product_name}}"的搜索结果共{{result_len}}条</h2>
+		<div class="cart-info">
+			<table>
+				<thead>
+					<tr>
+						<td>Product Image</td>
+						<td>Product Name</td>
+						<td>Seller</td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					{% for product in search_result %}
+						{% if product.is_exist == True %}
+						<tr>
+							<td><a href="/product/{{product.id}}"><img src="{{product.img.url}}"></a></td>
+							<td>{{product.name}}</td>
+							<td>{{product.user.username}}</td>
+							<td><a href="/product/{{product.id}}">详细信息</a></td>
+						</tr>
+						{% endif %}
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		{% endif %}
+	</div>
+{% endblock %}

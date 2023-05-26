@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}{{product.name}}{% endblock %}
+
+{% block content %}
+<div class="content">
+	<a href="#" onClick="javascript :history.back(-1);" class="return">&raquo;&nbsp;返回上页</a>
+	<div class="product-info">
+		{% if product.is_exist == True %}
+		<h2>{{product.name}}</h2>
+		
+
+		<div class="left">
+			<div class="image">
+				<a href="#"><img src="{{product.img.url}}"></a>
+			</div>
+		</div>
+
+		<div class="right">
+			<div class="description">
+				<div class="classify">&raquo;&nbsp;磨损程度：{{product.classification}}</div>
+				<div class="seller">&raquo;&nbsp;卖家：{{user}}</div>
+			</div>
+
+			<div class="price">
+				<br>
+				<div class="now_price">&raquo;&nbsp;价格：{{product.price}}</div>
+				<div class="old_price">&raquo;&nbsp;原价：{{product.old_price}}</div>
+				<br>
+			</div>
+
+			<div class="quantity">
+				&raquo;&nbsp;剩余数量：{{product.remained}}
+
+				<form action="add_to_cart/" method="post">
+					&raquo;&nbsp;购买数量：<input type="number" name="buy_quantity" value="1" min="0" max="{{product.quantity}}" style="width:50px;">
+					{% if product.remained == 0 %}
+					<button type="submit" class="button" disabled="disabled" style="font-weight:bold; color:red">库存不足</button>
+					{% else %}
+					<button type="submit" class="button">加入购物车</button>
+					{% endif %}
+				</form>
+				<div style="color:red; font-weight:bold;">{{status}}</div>
+				<br>
+			</div>
+
+			<div class="detailed">
+				<div class="detailed-title">详细描述：</div>
+				<div class="detailed-content">
+					<div>原购买时间：{{product.old_time}}</div>
+					<div>磨损程度：{{product.classification}}</div>
+					
+					{{product.description}}
+				</div>
+			</div>
+		</div>
+
+		{% else %}
+		<h2>很抱歉，该商品已下架</h2>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}

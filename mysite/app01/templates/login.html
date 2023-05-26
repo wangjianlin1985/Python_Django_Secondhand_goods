@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}登录{% endblock %}
+
+{% block content %}
+	<div class="content">
+		<a href="#" onClick="javascript :history.back(-1);" class="return">&raquo;&nbsp;返回上页</a>
+		<h1>Account Login</h1>
+		
+		<div id="content">
+	    	<div class="login-content">
+			    
+			    <div class="right">
+			      	<h2>请登录</h2>
+			      	<form method="post" action="" id="login" enctype="multipart/form-data">
+				        <div class="log-content">
+				        	<span style="color:red; font-size=bold;">{{status}}</span>
+				        	{{userform.as_p}}
+				        	{% csrf_token %}
+							<input class="button" type="submit" value = "Login" />
+					        <!--<p>E-Mail Address:</p>
+					        <input type="text" name="email" value="">
+					        <p>Password:</p>
+					        <input type="password" name="password" value=""><br>
+					        <button type="submit" onclick="$('#login').submit();" class="button"><span>Login</span></a>-->
+				        </div>
+			      	</form>
+			    </div>
+	  		</div>
+	  	</div>
+	</div>
+{% endblock %}
